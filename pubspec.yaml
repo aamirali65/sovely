@@ -1,0 +1,34 @@
+name: sovely                          # ✅ updated from focus_noise
+description: Sleep & relaxation sound mixer
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  audioplayers: ^6.0.0
+  flutter_riverpod: ^2.5.1
+  hive_flutter: ^1.1.0
+  hive: ^2.2.3
+  google_fonts: ^6.2.1
+  go_router: ^14.2.0
+  google_mobile_ads: ^5.1.0
+  flutter_animate: ^4.5.0
+  shared_preferences: ^2.3.2        # ✅ kept — used for favourites
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.11
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/sounds.json
+    - assets/sounds/
+    - assets/images/

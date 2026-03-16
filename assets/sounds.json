@@ -1,0 +1,16 @@
+[
+  {"id":"cafe","name":"Café","assetPath":"assets/sounds/cafe-ambience.mp3","iconName":"cafe","imagePath":"assets/images/cafe.jpg","category":"urban","isPremium":false},
+  {"id":"rain","name":"Rain","assetPath":"assets/sounds/calming-rain.mp3","iconName":"rain","imagePath":"assets/images/rain.jpg","category":"nature","isPremium":false},
+  {"id":"rain_ambience","name":"Rain Ambience","assetPath":"assets/sounds/rain-ambience.mp3","iconName":"rain","imagePath":"assets/images/rain2.jpg","category":"nature","isPremium":false},
+  {"id":"thunder","name":"Thunder","assetPath":"assets/sounds/dry-thunder.mp3","iconName":"thunder","imagePath":"assets/images/thunder.jpg","category":"nature","isPremium":false},
+  {"id":"fireplace","name":"Fireplace","assetPath":"assets/sounds/fire-crackling.mp3","iconName":"fire","imagePath":"assets/images/fire.jpg","category":"nature","isPremium":false},
+  {"id":"campfire","name":"Campfire Wind","assetPath":"assets/sounds/campfire-wind.mp3","iconName":"fire","imagePath":"assets/images/fire2.jpg","category":"nature","isPremium":false},
+  {"id":"ocean","name":"Sea Waves","assetPath":"assets/sounds/sea-waves.mp3","iconName":"ocean","imagePath":"assets/images/ocean.jpg","category":"nature","isPremium":false},
+  {"id":"wave_crash","name":"Wave Crash","assetPath":"assets/sounds/wave-crash.mp3","iconName":"ocean","imagePath":"assets/images/sea.jpg","category":"nature","isPremium":true},
+  {"id":"river","name":"Water Stream","assetPath":"assets/sounds/water-stream.mp3","iconName":"river","imagePath":"assets/images/river.jpg","category":"nature","isPremium":true},
+  {"id":"white_noise","name":"White Noise","assetPath":"assets/sounds/white-noise.mp3","iconName":"noise","imagePath":"assets/images/noise.jpg","category":"noise","isPremium":false},
+  {"id":"white_noise2","name":"White Noise 2","assetPath":"assets/sounds/white-noise2.mp3","iconName":"noise","imagePath":"assets/images/wind.jpg","category":"noise","isPremium":true},
+  {"id":"birds","name":"Bird Sounds","assetPath":"assets/sounds/bird-sound.mp3","iconName":"forest","imagePath":"assets/images/bird.jpg","category":"nature","isPremium":false},
+  {"id":"chirping","name":"Chirping Birds","assetPath":"assets/sounds/chirping-birds.mp3","iconName":"forest","imagePath":"assets/images/insect.jpg","category":"nature","isPremium":true},
+  {"id":"insects","name":"Insects","assetPath":"assets/sounds/insect.mp3","iconName":"moon","imagePath":"assets/images/forest.jpg","category":"nature","isPremium":true}
+]
