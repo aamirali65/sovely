@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/sound_data.dart';
 import '../../../core/providers/sound_providers.dart';
+import '../../../core/providers/admob_banner.dart';
 
 class MixerScreen extends ConsumerWidget {
   const MixerScreen({super.key});
@@ -177,6 +178,10 @@ class MixerScreen extends ConsumerWidget {
                 },
               ),
             ),
+
+            // ── AdMob Banner ────────────────────────────
+            const Center(child: AdmobBanner()),
+            const SizedBox(height: 8),
           ],
         ),
       ),

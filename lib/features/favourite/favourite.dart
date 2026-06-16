@@ -8,6 +8,7 @@ import 'package:sovely/core/providers/favourites_provider.dart';
 import 'package:sovely/core/theme/app_colors.dart';
 import 'package:sovely/features/home/widget/sound_card.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sovely/core/providers/admob_banner.dart';
 
 class FavouritesScreen extends ConsumerWidget {
   const FavouritesScreen({super.key});
@@ -83,11 +84,14 @@ class FavouritesScreen extends ConsumerWidget {
                         .fadeIn(duration: 300.ms, delay: (index * 60).ms)
                         .slideY(begin: 0.2, end: 0, delay: (index * 60).ms);
                   },
+                  ),
                 ),
-              ),
+              // ── AdMob Banner ────────────────────────────
+              const Center(child: AdmobBanner()),
+              const SizedBox(height: 8),
           ],
         ),
       ),
     );
-  }
+}
 }

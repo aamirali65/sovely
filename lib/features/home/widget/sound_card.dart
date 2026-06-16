@@ -59,6 +59,7 @@ class _SoundCardState extends ConsumerState<SoundCard>
     final isActive    = activeSounds.containsKey(widget.sound.id);
     final isFav       = favourites.contains(widget.sound.id);
     final volume      = activeSounds[widget.sound.id]?.volume ?? 0.7;
+    final isLoading   = activeSounds[widget.sound.id]?.isLoaded == false;
     final hasImage    = widget.sound.imagePath.isNotEmpty;
 
     return GestureDetector(
@@ -261,6 +262,27 @@ class _SoundCardState extends ConsumerState<SoundCard>
                       Icons.favorite_rounded,
                       color: AppColors.cyan,
                       size: 13,
+                    ),
+                  ),
+
+                // ── Loading spinner ──
+                if (isLoading)
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.45),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: const Center(
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: AppColors.cyan,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
               ],

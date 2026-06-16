@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:sovely/core/providers/admob_service.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/theme/app_colors.dart';
 
 class AppShell extends StatelessWidget {
   final Widget child;
@@ -19,15 +18,15 @@ class AppShell extends StatelessWidget {
   void _onTabTap(BuildContext context, int index, int currentIndex) {
     if (index == currentIndex) return;
 
-    // Show interstitial on every tab switch
-    AdmobService.showInterstitial();
-
+    // Navigate immediately, show interstitial in background
     switch (index) {
       case 0: context.go('/');            break;
       case 1: context.go('/mixer');       break;
       case 2: context.go('/timer');       break;
       case 3: context.go('/favourites'); break;
     }
+
+    AdmobService.showInterstitial();
   }
 
   @override

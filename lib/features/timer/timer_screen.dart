@@ -4,8 +4,8 @@ import 'package:sovely/core/providers/timer_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'dart:math' as math;
-import 'package:sovely/core/providers/sound_providers.dart';
 import 'package:sovely/core/theme/app_colors.dart';
+import 'package:sovely/core/providers/admob_banner.dart';
 
 class TimerScreen extends ConsumerWidget {
   const TimerScreen({super.key});
@@ -163,7 +163,11 @@ class TimerScreen extends ConsumerWidget {
                 ),
               ).animate().fadeIn(duration: 400.ms, delay: 400.ms),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 12),
+
+              // ── AdMob Banner ────────────────────────────
+              const Center(child: AdmobBanner()),
+              const SizedBox(height: 8),
             ],
           ),
         ),

@@ -9,6 +9,7 @@ import 'package:sovely/core/theme/app_colors.dart';
 import 'package:sovely/features/home/widget/sound_card.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sovely/core/utils/audio_manager.dart';
 
 const int kFreesoundLimit = 9;
 
@@ -38,17 +39,82 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           !_sessionUnlocked.contains(kSounds[globalIndex].id);
 
   void _showRewardedToUnlock(SoundModel sound) {
-    AdmobService.showRewarded(
-      onRewarded: (_, __) {
-        setState(() => _sessionUnlocked.add(sound.id));
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${sound.name} unlocked!'),
-            backgroundColor: AppColors.cyan,
-          ),
-        );
-      },
+    // ── If ad is ready, show it ──
+    if (AdmobService.isRewardedReady) {
+      _playSoundAfterUnlock(sound); // pre-fetch audio while ad plays
+      AdmobService.showRewarded(
+        onRewarded: (_, __) {
+          _unlockSound(sound);
+        },
+        onFailed: () {
+          _offerFreeUnlock(sound);
+        },
+      );
+      return;
+    }
+
+    // ── Ad not loaded yet ──
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Row(
+          children: [
+            SizedBox(
+              width: 16, height: 16,
+              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+            ),
+            SizedBox(width: 12),
+            Text('Loading ad... please wait'),
+          ],
+        ),
+        backgroundColor: AppColors.surfaceElevated,
+        duration: const Duration(seconds: 2),
+      ),
     );
+
+    // Try again after a short delay
+    Future.delayed(const Duration(seconds: 2), () {
+      if (!mounted) return;
+      if (AdmobService.isRewardedReady) {
+        AdmobService.showRewarded(
+          onRewarded: (_, __) => _unlockSound(sound),
+          onFailed: () => _offerFreeUnlock(sound),
+        );
+      } else {
+        _offerFreeUnlock(sound);
+      }
+    });
+  }
+
+  void _unlockSound(SoundModel sound) {
+    setState(() => _sessionUnlocked.add(sound.id));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${sound.name} unlocked! Enjoy'),
+        backgroundColor: AppColors.cyan,
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
+  void _offerFreeUnlock(SoundModel sound) {
+    if (!AdmobService.useTestAds) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Ad not available. Try again later.'),
+          backgroundColor: Colors.orange,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+    // In test/dev mode, unlock for free so you can actually test the app
+    _unlockSound(sound);
+  }
+
+  void _playSoundAfterUnlock(SoundModel sound) {
+    // Pre-cache: starts loading the audio while ad plays
+    AudioManager.instance.playSound(sound.id, sound.assetPath);
+    AudioManager.instance.pauseSound(sound.id);
   }
 
   @override
